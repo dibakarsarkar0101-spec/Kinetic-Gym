@@ -1,0 +1,156 @@
+{
+  "entities": {
+    "Member": {
+      "title": "Member",
+      "description": "Registered gym member profile and subscription state",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique member identifier (e.g. KIN-2026-XXXX)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the member",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the member",
+          "maxLength": 150
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the member",
+          "maxLength": 30
+        },
+        "membershipPlan": {
+          "type": "string",
+          "description": "Name or tier of chosen membership plan",
+          "maxLength": 50
+        },
+        "preferredTime": {
+          "type": "string",
+          "description": "Preferred workout time window",
+          "maxLength": 50
+        },
+        "joinDate": {
+          "type": "string",
+          "description": "ISO date string when the member joined"
+        },
+        "activeStatus": {
+          "type": "string",
+          "description": "Current status of membership",
+          "enum": ["ACTIVE", "PENDING", "EXPIRED"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp string of creation"
+        }
+      },
+      "required": ["name", "phone", "membershipPlan", "joinDate", "activeStatus"]
+    },
+    "Trainer": {
+      "title": "Trainer",
+      "description": "Certified fitness coach at Kinetic gym",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique trainer ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Trainer full name"
+        },
+        "specialty": {
+          "type": "string",
+          "description": "Trainer specialization and focus"
+        },
+        "experience": {
+          "type": "string",
+          "description": "Years of experience and credentials"
+        },
+        "availability": {
+          "type": "string",
+          "description": "Working hours or availability status"
+        }
+      },
+      "required": ["name", "specialty", "experience", "availability"]
+    },
+    "MembershipPlan": {
+      "title": "MembershipPlan",
+      "description": "Offered membership plan tier and perks",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plan name"
+        },
+        "price": {
+          "type": "number",
+          "description": "Price per duration"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration billing frequency (e.g. Monthly, Annual)"
+        },
+        "benefits": {
+          "type": "string",
+          "description": "Summary of plan inclusions"
+        }
+      },
+      "required": ["name", "price", "duration", "benefits"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Gym updates and notice board posts",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Announcement headline"
+        },
+        "message": {
+          "type": "string",
+          "description": "Detailed text of notice"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of announcement"
+        },
+        "activeStatus": {
+          "type": "boolean",
+          "description": "Whether announcement is currently visible"
+        }
+      },
+      "required": ["title", "message", "date", "activeStatus"]
+    }
+  },
+  "firestore": {
+    "/members/{memberId}": {
+      "schema": {
+        "$ref": "#/entities/Member"
+      },
+      "description": "Collection of all registered gym members"
+    },
+    "/trainers/{trainerId}": {
+      "schema": {
+        "$ref": "#/entities/Trainer"
+      },
+      "description": "Directory of gym trainers and coaches"
+    },
+    "/plans/{planId}": {
+      "schema": {
+        "$ref": "#/entities/MembershipPlan"
+      },
+      "description": "Available membership plans and pricing"
+    },
+    "/announcements/{announcementId}": {
+      "schema": {
+        "$ref": "#/entities/Announcement"
+      },
+      "description": "Official notices and announcements for the gym"
+    }
+  }
+}

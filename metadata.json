@@ -1,0 +1,8 @@
+{
+  "name": "KINETIC Gym Management Portal",
+  "description": "Modern responsive Gym Management Portal prototype for premium fitness centers with role-based member, trainer, and admin dashboards, energetic membership plans, and enrollment flow.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
